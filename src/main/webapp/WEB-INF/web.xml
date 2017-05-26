@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app  version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"  
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+                                            
+	<display-name>webload</display-name>
+	
+	<servlet>
+		<servlet-name>SpringMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:SpringMVC-servlet.xml</param-value>
+			<!-- 默认是/WEB-INF/[servlet名字]-servlet.xml -->
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-	 <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
-        <!-- 默认是/WEB-INF/applicationContext.xml -->
-     </context-param>
-     
-     <listener>
-        <listener-class>
-        	<!-- ContextLoaderListener指定了IOC容器初始化的方法 -->
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-     </listener>
-  
-    <servlet>
-        <servlet-name>SpringMVC</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/SpringMVC-servlet.xml</param-value>
-            <!-- 默认是/WEB-INF/[servlet名字]-servlet.xml -->
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping>
-    	<!-- DispatcherServlet则定义了mvc的相关内容，并配置拦截的url，如上面所示，所有/开头的请求，都会通过SpringMVC这个servlet进行处理。 -->
-        <servlet-name>SpringMVC</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-  
+	<servlet-mapping>
+		<!-- DispatcherServlet则定义了mvc的相关内容，并配置拦截的url，如上面所示，所有/开头的请求，都会通过SpringMVC这个servlet进行处理。 -->
+		<servlet-name>SpringMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 </web-app>
